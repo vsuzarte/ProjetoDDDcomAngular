@@ -1,4 +1,4 @@
-using CrossCutting.DependencyInjection;
+ï»¿using CrossCutting.DependencyInjection;
 using Domain.Security;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -7,6 +7,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
 using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.OpenApi.Models;
+using System.Collections.Generic;
 
 namespace CRM
 {
@@ -22,22 +26,9 @@ namespace CRM
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //adiciono as configuração de injeção de dependencia.
+            //adiciono as configuraÃ§Ã£o de injeÃ§Ã£o de dependencia.
             ConfigureService.ConfigurarInjecaoDeDependencias(services);
             ConfigureRepository.ConfigurarInjecaoDeDependencias(services);
-
-            //Adiciono as configuração do token, por injeção de dependencia.
-            var signingConfiguration = new SigninConfigurations();
-            //Adiciono como singleton porque ela deve ser uma estancia unica.
-            services.AddSingleton(signingConfiguration);
-
-            var tokenConfiguration = new TokenConfigurations();
-
-            var tokenConfigurations = new TokenConfigurations();
-            new ConfigureFromConfigurationOptions<TokenConfigurations>(
-                Configuration.GetSection("TokenConfigurations"))
-                     .Configure(tokenConfigurations);
-            services.AddSingleton(tokenConfigurations);
 
             services.AddControllers();
 
@@ -47,7 +38,7 @@ namespace CRM
                 c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
                 {
                     Version = "v1",
-                    Title = "S3 Soluções - CRMw",
+                    Title = "S3 SoluÃ§Ãµes - CRMw",
                     Contact = new Microsoft.OpenApi.Models.OpenApiContact
                     {
                         Name = "Vitor Fraga Suzarte",
@@ -69,7 +60,7 @@ namespace CRM
             //habilitar swagger;
             app.UseSwagger();
             app.UseSwaggerUI(c => {
-                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "S3 Soluções - CRMw.");
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "S3 SoluÃ§Ãµes - CRMw.");
                     c.RoutePrefix = string.Empty;
             });
 

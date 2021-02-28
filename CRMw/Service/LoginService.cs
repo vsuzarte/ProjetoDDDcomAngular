@@ -19,18 +19,9 @@ namespace Service
     {
         private IUsuarioRepository _repository;
 
-        private SigninConfigurations _signinConfigurations { get; set; }
-
-        private TokenConfigurations _tokenConfigurations { get; set; }
-
-        private IConfiguration _configuration { get;}
-
-        public LoginService(IUsuarioRepository repository, SigninConfigurations signinConfigurations, TokenConfigurations tokenConfigurations, IConfiguration configuration)
+        public LoginService(IUsuarioRepository repository)
         {
             _repository = repository;
-            _signinConfigurations = signinConfigurations;
-            _tokenConfigurations = tokenConfigurations;
-            _configuration = configuration;
         }
 
         public async Task<object> CarregarPorLoginSenha(LoginDTO login)
@@ -50,26 +41,7 @@ namespace Service
                     };
                 }
                 else
-                {
-                    //IMPLEMENTAÇÃO DO JWT
-                    var identity = new ClaimsIdentity(
-                        new GenericIdentity(baseUsuario.Usuario), 
-                        new[] { 
-                            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                            new Claim(JwtRegisteredClaimNames.UniqueName, baseUsuario.Usuario),
-                        }
-                    );
-
-                    DateTime createDate = DateTime.Now;
-                    //Pego a data configurada no arquivo appsetting para defirnir o tempo de vida do token. 120 s.
-                    DateTime expirationDate = createDate + TimeSpan.FromSeconds(_tokenConfigurations.Seconds);
-
-                    var handler = new JwtSecurityTokenHandler();
-
-                    string token = CreateToken(identity, createDate, expirationDate, handler);
-
-                    return SuccessObject(createDate, expirationDate, token, login);
-                }
+                    return baseUsuario;
             }
             else
             {
