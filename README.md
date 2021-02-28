@@ -9,7 +9,7 @@
 1 - No local que preferir faça um <b>git clone</b> do repositorio. Comando: git clone https://github.com/vsuzarte/S3Solution.git 🥴<br>
 2 - Irá abrir uma janela para logar no github 🙃<br>
 3 - Loga lá tudo certinho e vai ver que clonou o respositorio para você. 😱<br>
-4 - Caso tenha duvidas sobre o uso do GIT, pode olhar os comandos basicos em -> https://rogerdudler.github.io/git-guide/index.pt_BR.html 😮<br>
+4 - Caso tenha duvidas sobre o uso do GIT, pode olhar os comandos basicos em -> https://github.com/vsuzarte/S3Solution.git 😮<br>
 5 - Instaler o GITHUB desktop, pode ajudar muito.<br>
 
 <h4> Configurar o projeto </h3>
