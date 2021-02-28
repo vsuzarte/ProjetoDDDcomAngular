@@ -2,7 +2,6 @@
 using Domain.Entities;
 using Domain.Interfaces.Repository;
 using Domain.Interfaces.Services;
-using Domain.Security;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -51,34 +50,6 @@ namespace Service
                     message = "Falha ao autenticar usuário e senha."
                 };
             }
-        }
-
-        private string CreateToken(ClaimsIdentity identity, DateTime createDate, DateTime exprirationDate, JwtSecurityTokenHandler handler)
-        {
-            var securityToken = handler.CreateToken(new SecurityTokenDescriptor { 
-            
-                Issuer = _tokenConfigurations.Issuer,
-                Audience = _tokenConfigurations.Audience,
-                SigningCredentials = _signinConfigurations.SigningCredentials,
-                Subject = identity,
-                NotBefore = createDate,
-                Expires = exprirationDate
-            });
-
-            return handler.WriteToken(securityToken);
-        }
-
-        private object SuccessObject(DateTime createDate, DateTime exprirationDate, string token, LoginDTO login)
-        {
-            return new
-            {
-                authenticated = true,
-                createDate = createDate.ToString("yyyy-MM-dd HH:mm:ss"),
-                expiration = exprirationDate.ToString("yyyy-MM-dd HH:mm:ss"),
-                acessToken = token,
-                usarName = login.Usuario,
-                message = "Usuário logado com sucesso."
-            };
         }
     }
 }
