@@ -5,11 +5,11 @@
 <h3>Para o projeto funcionar na máquina de vocês, é bem simples.</h3>
 
 <h4> GIT - Clonar repositorio </h2>
-0 - Instalar o git 😶
-1 - No local que preferir faça um <b>git clone</b> do repositorio. Comando: git clone https://github.com/vsuzarte/S3Solution.git 🥴
-2 - Irá abrir uma janela para logar no github 🙃
-3 - Loga lá tudo certinho e vai ver que clonou o respositorio para você. 😱
-4 - Segue um guia que eu acho bem legal do GIT - https://rogerdudler.github.io/git-guide/index.pt_BR.html 😮
+0 - Instalar o git 😶 <br>
+1 - No local que preferir faça um <b>git clone</b> do repositorio. Comando: git clone https://github.com/vsuzarte/S3Solution.git 🥴<br>
+2 - Irá abrir uma janela para logar no github 🙃<br>
+3 - Loga lá tudo certinho e vai ver que clonou o respositorio para você. 😱<br>
+4 - Segue um guia que eu acho bem legal do GIT - https://rogerdudler.github.io/git-guide/index.pt_BR.html 😮<br>
 
 <h4> Configurar o projeto </h3>
 
